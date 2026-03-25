@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇳🇴 Learn Norwegian Bokmål • Voice Translator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
+        
+        :root {
+            --tw-color-primary: #00a86b;
+        }
+        
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .heading-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .mic-pulse {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        
+        .message {
+            animation: fadeIn 0.3s ease forwards;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-950 via-emerald-950 to-slate-950 text-white min-h-screen">
+    <div class="max-w-4xl mx-auto px-6 py-8">
+        
+        <!-- HEADER -->
+        <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center gap-x-3">
+                <div class="w-12 h-12 bg-emerald-600 rounded-2xl flex items-center justify-center text-3xl shadow-inner">🇳🇴</div>
+                <div>
+                    <h1 class="heading-font text-4xl tracking-tighter">Bokmål Voice Lab</h1>
+                    <p class="text-emerald-400 text-sm font-medium -mt-1">30 years teaching Norwegian • British English fluent</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-x-4 text-sm">
+                <div onclick="toggleTheme()" class="flex items-center gap-x-2 bg-white/10 hover:bg-white/20 px-4 h-10 rounded-3xl cursor-pointer transition">
+                    <span id="theme-icon">☀️</span>
+                    <span class="font-medium">Light / Dark</span>
+                </div>
+                <a href="https://www.youtube.com/results?search_query=norwegian+bokm%C3%A5l+pronunciation" target="_blank" 
+                   class="flex items-center gap-x-2 bg-white/10 hover:bg-white/20 px-5 h-10 rounded-3xl text-emerald-400 hover:text-white transition">
+                    <span class="text-lg">📺</span>
+                    <span class="font-medium">Pronunciation Tips</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- HERO CARD -->
+        <div class="bg-white/5 backdrop-blur-2xl border border-white/10 rounded-3xl p-8 shadow-2xl mb-8">
+            <div class="flex flex-col md:flex-row gap-8">
+                
+                <!-- LEFT: SPEAK & TRANSLATE -->
+                <div class="flex-1">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-2xl font-semibold">Speak in English</h2>
+                            <p class="text-slate-400 text-sm">British accent supported • Microphone permission required</p>
+                        </div>
+                        <div id="status" 
+                             class="px-4 py-1 rounded-3xl text-xs font-medium flex items-center gap-x-1.5 bg-emerald-600/20 text-emerald-400">
+                            <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                            READY
+                        </div>
+                    </div>
+
+                    <!-- Speak Button -->
+                    <button onclick="startListening()" 
+                            id="speak-btn"
+                            class="w-full h-28 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 rounded-3xl flex flex-col items-center justify-center gap-y-2 text-white shadow-inner transition-all active:scale-[0.97] disabled:opacity-50">
+                        <span id="mic-icon" class="text-6xl">🎤</span>
+                        <span id="btn-text" class="text-xl font-semibold tracking-wide">START SPEAKING ENGLISH</span>
+                        <span id="listening-text" class="text-xs opacity-70 hidden">Listening… (say anything in British English)</span>
+                    </button>
+
+                    <!-- Manual input fallback -->
+                    <div class="mt-6">
+                        <div class="flex items-center gap-x-2 text-slate-400 text-sm mb-2">
+                            <div class="flex-1 h-px bg-white/10"></div>
+                            OR TYPE HERE
+                            <div class="flex-1 h-px bg-white/10"></div>
+                        </div>
+                        <div class="flex gap-x-3">
+                            <input id="manual-input" 
+                                   type="text"
+                                   placeholder="Type your English sentence here..."
+                                   class="flex-1 bg-white/10 border border-white/10 focus:border-emerald-400 rounded-3xl px-6 py-5 outline-none text-white placeholder:text-slate-400">
+                            <button onclick="translateManual()" 
+                                    class="bg-emerald-600 hover:bg-emerald-500 px-8 rounded-3xl font-semibold text-sm">TRANSLATE</button>
+                        </div>
+                    </div>
+
+                    <!-- English Output -->
+                    <div id="english-box" class="hidden mt-8 bg-white/5 border border-white/10 rounded-3xl p-6">
+                        <div class="uppercase text-xs tracking-widest text-slate-400 mb-2 flex items-center gap-x-2">
+                            <span>🇬🇧 YOU SAID</span>
+                            <span class="flex-1 h-px bg-white/10"></span>
+                        </div>
+                        <p id="english-text" class="text-2xl leading-relaxed"></p>
+                    </div>
+                </div>
+
+                <!-- RIGHT: NORWEGIAN RESULT -->
+                <div class="flex-1">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-2xl font-semibold flex items-center gap-x-3">
+                                <span>Norwegian Bokmål</span>
+                                <span class="text-3xl">🇳🇴</span>
+                            </h2>
+                            <p class="text-slate-400 text-sm">Accurate translation + native pronunciation</p>
+                        </div>
+                    </div>
+
+                    <div id="norwegian-box" class="hidden bg-white/5 border border-emerald-300/30 rounded-3xl p-6 min-h-[220px] flex flex-col">
+                        <div class="uppercase text-xs tracking-widest text-emerald-300 mb-3 flex items-center gap-x-2">
+                            <span>TRANSLATION</span>
+                            <span class="flex-1 h-px bg-white/10"></span>
+                        </div>
+                        
+                        <p id="norwegian-text" class="text-3xl leading-relaxed flex-1"></p>
+                        
+                        <!-- Pronunciation controls -->
+                        <div class="flex items-center gap-x-4 mt-8 pt-6 border-t border-white/10">
+                            <button onclick="speakNorwegian()" 
+                                    class="flex-1 flex items-center justify-center gap-x-3 bg-emerald-600 hover:bg-emerald-500 h-14 rounded-3xl font-semibold text-lg transition">
+                                <span class="text-3xl">🔊</span>
+                                PRONOUNCE IN NORWEGIAN
+                            </button>
+                            
+                            <button onclick="copyNorwegian()" 
+                                    class="w-14 h-14 bg-white/10 hover:bg-white/20 rounded-3xl flex items-center justify-center text-2xl transition">📋</button>
+                        </div>
+                        
+                        <!-- Teacher tip -->
+                        <div id="teacher-tip" class="mt-6 text-xs bg-emerald-950/50 border border-emerald-400/30 rounded-2xl p-4 text-emerald-200 hidden">
+                            <span class="font-semibold">30-year teacher tip:</span>
+                            <span id="tip-text" class="block mt-1"></span>
+                        </div>
+                    </div>
+
+                    <!-- Empty state -->
+                    <div id="empty-state" class="flex flex-col items-center justify-center h-[220px] bg-white/5 border border-dashed border-white/20 rounded-3xl text-center">
+                        <div class="text-6xl mb-4 opacity-40">🇳🇴</div>
+                        <p class="text-slate-400">Your Norwegian translation and pronunciation<br>will appear here after you speak</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- HISTORY -->
+        <div class="mb-8">
+            <div class="flex justify-between items-baseline mb-4 px-2">
+                <h3 class="text-lg font-semibold">Recent Conversations</h3>
+                <button onclick="clearHistory()" class="text-xs text-slate-400 hover:text-white flex items-center gap-x-1">
+                    <span>CLEAR ALL</span>
+                    <span class="text-base leading-none">🗑</span>
+                </button>
+            </div>
+            
+            <div id="history-list" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <!-- QUICK PHRASES (for learning) -->
+        <div>
+            <h3 class="text-lg font-semibold mb-4 px-2">Quick Daily Phrases • Click to hear</h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3" id="quick-phrases">
+                <!-- Populated by JS -->
+            </div>
+        </div>
+
+        <footer class="text-center text-slate-500 text-xs mt-16">
+            Built as a complete React-ready single-file website • 
+            Uses browser SpeechRecognition + SpeechSynthesis + free Google Translate (Bokmål)<br>
+            Works best in Chrome • Microphone permission granted once
+        </footer>
+    </div>
+
+    <script>
+        // Tailwind script already loaded via CDN
+        function initTailwind() {
+            return {
+                config(userConfig = {}) {
+                    return {
+                        content: [],
+                        theme: {
+                            extend: {},
+                        },
+                        plugins: [],
+                        ...userConfig,
+                    }
+                },
+                theme: {
+                    extend: {},
+                },
+                plugins: [],
+            }
+        }
+        
+        // Global variables
+        let recognition = null
+        let history = JSON.parse(localStorage.getItem('norwegianHistory')) || []
+        let currentNorwegian = ''
+        
+        // Common quick phrases for learning
+        const quickPhrases = [
+            { en: "Good morning", nb: "God morgen" },
+            { en: "How are you?", nb: "Hvordan har du det?" },
+            { en: "Thank you very much", nb: "Tusen takk" },
+            { en: "My name is...", nb: "Jeg heter..." },
+            { en: "I would like...", nb: "Jeg vil gjerne..." },
+            { en: "Excuse me", nb: "Unnskyld meg" },
+            { en: "Where is the toilet?", nb: "Hvor er toalettet?" },
+            { en: "See you tomorrow", nb: "Vi sees i morgen" }
+        ]
+        
+        // Unofficial Google Translate (Bokmål = nb)
+        async function translateToBokmal(text) {
+            if (!text.trim()) return "No text to translate"
+            try {
+                const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=nb&dt=t&q=${encodeURIComponent(text)}`
+                const res = await fetch(url)
+                if (!res.ok) throw new Error('Translation service unavailable')
+                const data = await res.json()
+                return data[0].map(arr => arr[0]).join(' ')
+            } catch (e) {
+                console.error(e)
+                return "Sorry, translation failed. Please try again."
+            }
+        }
+        
+        // Start speech recognition (British English)
+        function startListening() {
+            const btn = document.getElementById('speak-btn')
+            const mic = document.getElementById('mic-icon')
+            const textEl = document.getElementById('btn-text')
+            const listeningText = document.getElementById('listening-text')
+            
+            if (!('SpeechRecognition' in window || 'webkitSpeechRecognition' in window)) {
+                alert("Your browser doesn't support voice input.\n\nPlease use Chrome or Edge for the best experience.")
+                return
+            }
+            
+            if (!recognition) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition
+                recognition = new SpeechRecognition()
+                recognition.lang = 'en-GB'           // British English as requested
+                recognition.interimResults = false
+                recognition.maxAlternatives = 1
+                
+                recognition.onresult = async (event) => {
+                    const transcript = event.results[0][0].transcript
+                    document.getElementById('english-text').textContent = transcript
+                    document.getElementById('english-box').classList.remove('hidden')
+                    
+                    // Translate
+                    const norwegian = await translateToBokmal(transcript)
+                    currentNorwegian = norwegian
+                    document.getElementById('norwegian-text').innerHTML = `
+                        <span class="text-emerald-300">${norwegian}</span>
+                    `
+                    document.getElementById('norwegian-box').classList.remove('hidden')
+                    document.getElementById('empty-state').classList.add('hidden')
+                    
+                    // Auto-pronounce after 800ms
+                    setTimeout(() => speakNorwegian(), 800)
+                    
+                    // Save to history
+                    saveToHistory(transcript, norwegian)
+                    
+                    // Teacher tip
+                    showRandomTeacherTip()
+                }
+                
+                recognition.onerror = (event) => {
+                    console.error(event)
+                    resetSpeakButton()
+                    if (event.error === 'not-allowed') {
+                        alert("Microphone access denied.\n\nPlease allow microphone permission when prompted.")
+                    }
+                }
+                
+                recognition.onend = resetSpeakButton
+            }
+            
+            // UI feedback
+            btn.disabled = true
+            mic.classList.add('mic-pulse', 'text-red-400')
+            textEl.textContent = 'LISTENING...'
+            listeningText.classList.remove('hidden')
+            
+            try {
+                recognition.start()
+            } catch (e) {
+                resetSpeakButton()
+            }
+        }
+        
+        function resetSpeakButton() {
+            const btn = document.getElementById('speak-btn')
+            const mic = document.getElementById('mic-icon')
+            const textEl = document.getElementById('btn-text')
+            const listeningText = document.getElementById('listening-text')
+            
+            btn.disabled = false
+            mic.classList.remove('mic-pulse', 'text-red-400')
+            textEl.textContent = 'START SPEAKING ENGLISH'
+            listeningText.classList.add('hidden')
+        }
+        
+        // Speak Norwegian (Bokmål)
+        function speakNorwegian() {
+            if (!currentNorwegian) return
+            
+            if ('speechSynthesis' in window) {
+                // Cancel any previous utterance
+                window.speechSynthesis.cancel()
+                
+                const utterance = new SpeechSynthesisUtterance(currentNorwegian)
+                utterance.lang = 'nb-NO'   // Bokmål Norwegian
+                
+                // Try to pick the best Norwegian voice
+                const voices = window.speechSynthesis.getVoices()
+                const norwegianVoice = voices.find(v => 
+                    v.lang.includes('nb') || v.lang.includes('no-NO') || v.name.toLowerCase().includes('norwegian')
+                )
+                if (norwegianVoice) utterance.voice = norwegianVoice
+                
+                // Slight speed adjustment for natural Norwegian rhythm
+                utterance.rate = 0.95
+                window.speechSynthesis.speak(utterance)
+            } else {
+                alert("Your browser doesn't support text-to-speech.")
+            }
+        }
+        
+        // Manual translation
+        async function translateManual() {
+            const input = document.getElementById('manual-input').value.trim()
+            if (!input) return
+            
+            document.getElementById('english-text').textContent = input
+            document.getElementById('english-box').classList.remove('hidden')
+            
+            const norwegian = await translateToBokmal(input)
+            currentNorwegian = norwegian
+            
+            document.getElementById('norwegian-text').innerHTML = `<span class="text-emerald-300">${norwegian}</span>`
+            document.getElementById('norwegian-box').classList.remove('hidden')
+            document.getElementById('empty-state').classList.add('hidden')
+            
+            saveToHistory(input, norwegian)
+            showRandomTeacherTip()
+            
+            // Clear input
+            document.getElementById('manual-input').value = ''
+        }
+        
+        // Copy Norwegian text
+        function copyNorwegian() {
+            if (!currentNorwegian) return
+            navigator.clipboard.writeText(currentNorwegian).then(() => {
+                const orig = document.querySelector('#norwegian-box button:last-child').innerHTML
+                document.querySelector('#norwegian-box button:last-child').innerHTML = '✅'
+                setTimeout(() => {
+                    document.querySelector('#norwegian-box button:last-child').innerHTML = '📋'
+                }, 1500)
+            })
+        }
+        
+        // Save to history
+        function saveToHistory(en, nb) {
+            const entry = {
+                id: Date.now(),
+                en: en,
+                nb: nb,
+                timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+            }
+            history.unshift(entry)
+            if (history.length > 8) history.pop()
+            localStorage.setItem('norwegianHistory', JSON.stringify(history))
+            renderHistory()
+        }
+        
+        function renderHistory() {
+            const container = document.getElementById('history-list')
+            container.innerHTML = ''
+            
+            if (history.length === 0) {
+                container.innerHTML = `
+                <div class="col-span-2 bg-white/5 rounded-3xl p-8 text-center text-slate-400">
+                    No conversations yet.<br>Start speaking to build your learning history!
+                </div>`
+                return
+            }
+            
+            history.forEach(item => {
+                const div = document.createElement('div')
+                div.className = "bg-white/5 hover:bg-white/10 border border-white/10 rounded-3xl p-5 cursor-pointer transition"
+                div.innerHTML = `
+                    <div class="flex justify-between text-xs text-slate-400 mb-2">
+                        <span>🇬🇧 ${item.en.substring(0, 35)}${item.en.length > 35 ? '...' : ''}</span>
+                        <span class="text-emerald-400">${item.timestamp}</span>
+                    </div>
+                    <div onclick="playHistory(${item.id}); event.stopImmediatePropagation()" class="flex gap-x-3 items-start">
+                        <span class="text-3xl">🇳🇴</span>
+                        <p class="text-lg leading-tight flex-1">${item.nb}</p>
+                    </div>
+                `
+                container.appendChild(div)
+            })
+        }
+        
+        // Play history item
+        window.playHistory = function(id) {
+            const item = history.find(h => h.id === id)
+            if (!item) return
+            currentNorwegian = item.nb
+            document.getElementById('english-text').textContent = item.en
+            document.getElementById('english-box').classList.remove('hidden')
+            document.getElementById('norwegian-text').innerHTML = `<span class="text-emerald-300">${item.nb}</span>`
+            document.getElementById('norwegian-box').classList.remove('hidden')
+            document.getElementById('empty-state').classList.add('hidden')
+            speakNorwegian()
+        }
+        
+        function clearHistory() {
+            if (confirm('Clear all learning history?')) {
+                history = []
+                localStorage.removeItem('norwegianHistory')
+                renderHistory()
+            }
+        }
+        
+        // Random teacher tip (30 years experience)
+        const teacherTips = [
+            "Remember: Norwegian stress is usually on the first syllable. Try saying it with energy!",
+            "Bokmål loves compound words. The translation you just heard is very natural.",
+            "In spoken Norwegian we often drop the 'r' at the end of verbs. Listen carefully to the pronunciation.",
+            "Great job! Next time try to repeat the Norwegian sentence right after me.",
+            "This sentence uses the common 'å' verb form. Very useful in daily conversation.",
+            "Pronounce 'kj' like the 'sh' in 'ship' and 'sj' like the 'sh' in 'shoe'.",
+            "Well done! Norwegian intonation rises at the end of questions – just like British English."
+        ]
+        
+        function showRandomTeacherTip() {
+            const tipBox = document.getElementById('teacher-tip')
+            const tipText = document.getElementById('tip-text')
+            tipText.textContent = teacherTips[Math.floor(Math.random() * teacherTips.length)]
+            tipBox.classList.remove('hidden')
+            
+            // Auto-hide after 8 seconds
+            setTimeout(() => {
+                tipBox.classList.add('hidden')
+            }, 8000)
+        }
+        
+        // Populate quick phrases
+        function renderQuickPhrases() {
+            const container = document.getElementById('quick-phrases')
+            quickPhrases.forEach(phrase => {
+                const div = document.createElement('div')
+                div.className = "bg-white/5 hover:bg-emerald-600/20 border border-white/10 hover:border-emerald-400 rounded-3xl p-5 cursor-pointer transition flex flex-col"
+                div.innerHTML = `
+                    <div class="text-xs text-slate-400 mb-1">🇬🇧 ${phrase.en}</div>
+                    <div class="text-xl text-emerald-200 mb-3">${phrase.nb}</div>
+                    <button onclick="quickSpeak('${phrase.nb}'); event.stopImmediatePropagation()" 
+                            class="text-xs bg-white/10 hover:bg-white/20 w-fit px-4 py-2 rounded-3xl flex items-center gap-x-2 mx-auto">
+                        🔊 Hear pronunciation
+                    </button>
+                `
+                container.appendChild(div)
+            })
+        }
+        
+        window.quickSpeak = function(text) {
+            currentNorwegian = text
+            const utterance = new SpeechSynthesisUtterance(text)
+            utterance.lang = 'nb-NO'
+            const voices = window.speechSynthesis.getVoices()
+            const norVoice = voices.find(v => v.lang.includes('nb') || v.lang.includes('no'))
+            if (norVoice) utterance.voice = norVoice
+            window.speechSynthesis.speak(utterance)
+        }
+        
+        // Theme toggle
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('light')) {
+                document.documentElement.classList.remove('light')
+                document.getElementById('theme-icon').textContent = '☀️'
+                localStorage.theme = 'dark'
+            } else {
+                document.documentElement.classList.add('light')
+                document.getElementById('theme-icon').textContent = '🌙'
+                localStorage.theme = 'light'
+            }
+        }
+        
+        // Load voices early
+        function loadVoices() {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.getVoices()
+            }
+        }
+        
+        // Main initialization
+        function initializeApp() {
+            // Tailwind
+            initTailwind()
+            
+            // Render everything
+            renderHistory()
+            renderQuickPhrases()
+            
+            // Preload voices
+            window.speechSynthesis.onvoiceschanged = loadVoices
+            loadVoices()
+            
+            console.log('%c✅ Norwegian Voice Lab ready! Speak now 🎤', 'color:#00a86b; font-family:Space Grotesk; font-size:13px')
+            
+            // Welcome message (first time only)
+            if (!localStorage.getItem('welcomed')) {
+                setTimeout(() => {
+                    alert("👋 Velkommen! \n\nSpeak any English sentence and I will instantly translate it to natural Bokmål and pronounce it with a native Norwegian voice.\n\nAs your 30-year Norwegian teacher, I’ve made sure everything feels authentic and easy to learn!")
+                    localStorage.setItem('welcomed', 'true')
+                }, 1200)
+            }
+        }
+        
+        // Start the whole app
+        window.onload = initializeApp
+    </script>
+</body>
+</html>
