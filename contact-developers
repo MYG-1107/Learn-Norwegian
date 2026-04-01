@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Learn Norwegian</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style> /* same style as index */ </style>
+</head>
+<body class="aurora-bg text-white min-h-screen">
+    <div id="header"></div>
+    
+    <div class="max-w-4xl mx-auto px-6 py-12">
+        <h1 class="text-4xl font-bold mb-6">About Learn Norwegian</h1>
+        <p class="text-lg text-slate-200 leading-relaxed">
+            This app helps you learn Norwegian Bokmål using voice translation and native pronunciation. 
+            Speak in English (or Norwegian) and instantly hear the correct Bokmål version.
+        </p>
+        <!-- Add more content as needed -->
+    </div>
+    
+    <div id="footer"></div>
+    
+    <script>
+        // Load header and footer dynamically if you want (or copy-paste for simplicity)
+        document.getElementById('header').innerHTML = `<!-- paste header.html content -->`;
+        document.getElementById('footer').innerHTML = `<!-- paste footer.html content -->`;
+    </script>
+</body>
+</html>
