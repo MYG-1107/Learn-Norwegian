@@ -1,14 +1,30 @@
 <div class="border-b border-white/10 bg-black/30 backdrop-blur-md sticky top-0 z-50">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
         <div class="flex items-center gap-x-3">
-            <!-- Your SVG logo here (keep the same SVG you had) -->
-            <svg width="280" height="60" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg"> ... </svg>
+            <!-- Your exact SVG logo from the last code -->
+            <svg width="280" height="60" viewBox="0 0 280 60" xmlns="http://www.w3.org/2000/svg">
+              <g transform="translate(5, 5)">
+                <clipPath id="bubbleClip">
+                  <path d="M25 0 C11.19 0 0 11.19 0 25 C0 31.95 2.84 38.25 7.42 42.75 L4 50 L12.5 47.16 C16.14 48.97 20.41 50 25 50 C38.81 50 50 38.81 50 25 C50 11.19 38.81 0 25 0 Z" />
+                </clipPath>
+                <path d="M25 0 C11.19 0 0 11.19 0 25 C0 31.95 2.84 38.25 7.42 42.75 L4 50 L12.5 47.16 C16.14 48.97 20.41 50 25 50 C38.81 50 50 38.81 50 25 C50 11.19 38.81 0 25 0 Z" fill="#BA0C2F" />
+                <rect x="14" y="0" width="8" height="50" fill="#FFFFFF" clip-path="url(#bubbleClip)"/>
+                <rect x="0" y="21" width="50" height="8" fill="#FFFFFF" clip-path="url(#bubbleClip)"/>
+                <rect x="16" y="0" width="4" height="50" fill="#00205B" clip-path="url(#bubbleClip)"/>
+                <rect x="0" y="23" width="50" height="4" fill="#00205B" clip-path="url(#bubbleClip)"/>
+                <rect x="12" y="17" width="3" height="16" rx="1.5" fill="#FFFFFF" />
+                <rect x="23" y="10" width="4" height="30" rx="2" fill="#FFFFFF" />
+                <rect x="35" y="17" width="3" height="16" rx="1.5" fill="#FFFFFF" />
+              </g>
+            </svg>
+            
             <h1 class="heading-font text-3xl sm:text-4xl tracking-tighter">Learn Norwegian</h1>
         </div>
         
-        <div class="flex items-center gap-x-4">
-            <a href="about.html" class="text-sm font-medium hover:text-emerald-300 transition">About</a>
-            <a href="contact-developers.html" class="text-sm font-medium hover:text-emerald-300 transition">Contact</a>
+        <div class="flex items-center gap-x-6 text-sm font-medium">
+            <a href="index.html" class="hover:text-emerald-300 transition">Home</a>
+            <a href="about.html" class="hover:text-emerald-300 transition">About</a>
+            <a href="contact-developers.html" class="hover:text-emerald-300 transition">Contact Developers</a>
         </div>
     </div>
 </div>
