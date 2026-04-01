@@ -3,28 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Learn Norwegian</title>
+    <title>Contact Developers - Learn Norwegian</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style> /* same style as index */ </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
+        body { font-family: 'Inter', system_ui, sans-serif; }
+        .heading-font { font-family: 'Space Grotesk', sans-serif; }
+        .aurora-bg { background: linear-gradient(135deg, #0f172a, #1e3a5f, #312e81, #0f766e); }
+    </style>
 </head>
 <body class="aurora-bg text-white min-h-screen">
+
+    <!-- Header will be loaded dynamically -->
     <div id="header"></div>
-    
-    <div class="max-w-4xl mx-auto px-6 py-12">
-        <h1 class="text-4xl font-bold mb-6">About Learn Norwegian</h1>
-        <p class="text-lg text-slate-200 leading-relaxed">
-            This app helps you learn Norwegian Bokmål using voice translation and native pronunciation. 
-            Speak in English (or Norwegian) and instantly hear the correct Bokmål version.
-        </p>
-        <!-- Add more content as needed -->
+
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+        <div class="text-center mb-12">
+            <h1 class="heading-font text-5xl sm:text-6xl font-semibold tracking-tighter mb-4">Meet the Developers</h1>
+            <p class="text-xl text-slate-300 max-w-2xl mx-auto">
+                This Learn Norwegian app was built with passion by two talented developers from Warangal, Telangana.
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            
+            <!-- Developer 1: Mallarapu Yaswanth -->
+            <div class="bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl p-8 hover:border-emerald-400/50 transition-all group">
+                <div class="flex flex-col items-center text-center mb-8">
+                    <div class="w-28 h-28 bg-gradient-to-br from-purple-500 to-emerald-500 rounded-2xl flex items-center justify-center text-6xl mb-4 shadow-inner">
+                        🇳🇴
+                    </div>
+                    <h2 class="text-3xl font-semibold">Mallarapu Yaswanth</h2>
+                    <p class="text-emerald-400 font-medium">Software Engineer &amp; Administrative Developer</p>
+                    <p class="text-slate-400 mt-1">SITER Academy, Norway</p>
+                </div>
+
+                <div class="text-slate-300 leading-relaxed text-center mb-8">
+                    Talented Software Engineer with strong expertise in full-stack development and AI. 
+                    Passionate about building smart, fast, and scalable software products.
+                </div>
+
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="uppercase text-xs tracking-widest text-slate-400 mb-3">Key Skills</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-white/10 px-4 py-1.5 rounded-3xl text-sm">React</span>
+                            <span class="bg-white/10 px-4 py-1.5 rounded-3xl text-sm">Python</span>
+                            <span class="bg-white/10 px-4 py-1.5 rounded-3xl text-sm">AWS</span>
+                            <span class="bg-white/10 px-4 py-1.5 rounded-3xl text-sm">Machine Learning</span>
+                            <span class="bg-white/10 px-4 py-1.5 rounded-3xl text-sm">Django</span>
+                            <span class="bg-white/10 px-4 py-1.5 rounded-3xl text-sm">TensorFlow</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="uppercase text-xs tracking-widest text-slate-400 mb-2">Notable Achievement</h4>
+                        <p class="text-sm text-slate-300">
+                            Presented research paper on <span class="text-emerald-300">"A Low Cost IoT-Based Monitoring for Aquaculture Using AI"</span> 
+                            at the 53rd Wireless World Research Forum (WWRF 2025).
+                        </p>
+                    </div>
+
+                    <div class="pt-6 border-t border-white/10">
+                        <a href="mailto:mallarapuyaswanth05@gmail.com" 
+                           class="block w-full text-center bg-emerald-600 hover:bg-emerald-500 py-4 rounded-3xl font-semibold transition">
+                            ✉️ Contact Yaswanth
+                        </a>
+                        <a href="https://myg-1107.github.io/Portfolio-Mallarapu-Yaswanth/" target="_blank"
+                           class="block w-full text-center mt-3 text-slate-300 hover:text-white border border-white/30 hover:border-white/50 py-3 rounded-3xl transition">
+                            View Full Portfolio →
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Developer 2: Sukumar Singarapu -->
+            <div class="bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl p-8 hover:border-emerald-400/50 transition-all group">
+                <div class="flex flex-col items-center text-center mb-8">
+                    <div class="w-28 h-28 bg-gradient-to-br from-purple-500 to-emerald-500 rounded-2xl flex items-center justify-center text-6xl mb-4 shadow-inner">
+                        💻
+                    </div>
+                    <h2 class="text-3xl font-semibold">Sukumar Singarapu</h2>
+                    <p class="text-emerald-400 font-medium">Entry-Level Full Stack Developer</p>
+                    <p class="text-slate-400 mt-1">SITER Academy</p>
+                </div>
+
+                <div class="text-slate-300 leading-relaxed text-center mb-8">
+                    Passionate entry-level Full Stack Developer with hands-on experience in modern web technologies, 
+                    REST APIs, and Machine Learning projects. Focused on building clean, responsive, and reliable applications.
+                </div>
+
+                <div class="space-y-6">
+                    <div>
+                        <h4 class="uppercase text-xs tracking-widest text-slate-400 mb-3">Key Skills</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-white/10 px-4 py-1.5 rounded-3xl text-sm">JavaScript</span>
+                            <span class="bg-white/10 px-4 py-1.5 rounded-3xl text-sm">React</span>
+                            <span class="bg-white/10 px-4 py-1.5 rounded-3xl text-sm">Python</span>
+                            <span class="bg-white/10 px-4 py-1.5 rounded-3xl text-sm">Java</span>
+                            <span class="bg-white/10 px-4 py-1.5 rounded-3xl text-sm">SQL</span>
+                            <span class="bg-white/10 px-4 py-1.5 rounded-3xl text-sm">Machine Learning</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h4 class="uppercase text-xs tracking-widest text-slate-400 mb-2">Notable Projects</h4>
+                        <ul class="text-sm text-slate-300 space-y-2">
+                            <li>• Android Malware Detection using Genetic Algorithm</li>
+                            <li>• Online Payment Fraud Detection System</li>
+                            <li>• Accident Prevention, Detection &amp; Reporting System</li>
+                        </ul>
+                    </div>
+
+                    <div class="pt-6 border-t border-white/10">
+                        <a href="mailto:sukumarsingarapu14@gmail.com" 
+                           class="block w-full text-center bg-emerald-600 hover:bg-emerald-500 py-4 rounded-3xl font-semibold transition">
+                            ✉️ Contact Sukumar
+                        </a>
+                        <a href="https://sukumar-dev.github.io/portfolio2/" target="_blank"
+                           class="block w-full text-center mt-3 text-slate-300 hover:text-white border border-white/30 hover:border-white/50 py-3 rounded-3xl transition">
+                            View Full Portfolio →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-16 text-slate-400 text-sm">
+            Both developers are passionate about building useful learning tools and are currently associated with SITER Academy.
+        </div>
     </div>
-    
+
+    <!-- Footer will be loaded dynamically -->
     <div id="footer"></div>
-    
+
     <script>
-        // Load header and footer dynamically if you want (or copy-paste for simplicity)
-        document.getElementById('header').innerHTML = `<!-- paste header.html content -->`;
-        document.getElementById('footer').innerHTML = `<!-- paste footer.html content -->`;
+        // Load Header and Footer dynamically
+        async function loadHeaderAndFooter() {
+            try {
+                const [headerRes, footerRes] = await Promise.all([
+                    fetch('header.html'),
+                    fetch('footer.html')
+                ]);
+                document.getElementById('header').innerHTML = await headerRes.text();
+                document.getElementById('footer').innerHTML = await footerRes.text();
+            } catch (e) {
+                console.error("Failed to load header/footer", e);
+            }
+        }
+
+        window.onload = loadHeaderAndFooter;
     </script>
 </body>
 </html>
