@@ -5,26 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About - Learn Norwegian</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style> /* same style as index */ </style>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
+        body { font-family: 'Inter', system_ui, sans-serif; }
+        .aurora-bg { background: linear-gradient(135deg, #0f172a, #1e3a5f, #312e81, #0f766e); }
+    </style>
 </head>
 <body class="aurora-bg text-white min-h-screen">
     <div id="header"></div>
     
     <div class="max-w-4xl mx-auto px-6 py-12">
-        <h1 class="text-4xl font-bold mb-6">About Learn Norwegian</h1>
-        <p class="text-lg text-slate-200 leading-relaxed">
-            This app helps you learn Norwegian Bokmål using voice translation and native pronunciation. 
-            Speak in English (or Norwegian) and instantly hear the correct Bokmål version.
-        </p>
-        <!-- Add more content as needed -->
+        <h1 class="text-4xl font-bold mb-8">About Learn Norwegian</h1>
+        <div class="prose prose-invert max-w-none">
+            <p class="text-lg leading-relaxed">This is a voice-first language learning app focused on Norwegian Bokmål.</p>
+            <p class="text-slate-300">Speak or type in English (British accent supported) and instantly get accurate Bokmål translation + native pronunciation.</p>
+            <p class="text-slate-300">Built for real learners who want to practise speaking every day.</p>
+        </div>
     </div>
     
     <div id="footer"></div>
-    
+
     <script>
-        // Load header and footer dynamically if you want (or copy-paste for simplicity)
-        document.getElementById('header').innerHTML = `<!-- paste header.html content -->`;
-        document.getElementById('footer').innerHTML = `<!-- paste footer.html content -->`;
+        async function loadHeaderAndFooter() {
+            const [headerRes, footerRes] = await Promise.all([fetch('header.html'), fetch('footer.html')]);
+            document.getElementById('header').innerHTML = await headerRes.text();
+            document.getElementById('footer').innerHTML = await footerRes.text();
+        }
+        window.onload = loadHeaderAndFooter;
     </script>
 </body>
 </html>
