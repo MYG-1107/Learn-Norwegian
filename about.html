@@ -26,12 +26,42 @@
     <div id="footer"></div>
 
     <script>
+        function initializeHeader() {
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const bar1 = document.getElementById('bar1');
+            const bar2 = document.getElementById('bar2');
+            const bar3 = document.getElementById('bar3');
+
+            if (!hamburgerBtn || !mobileMenu || !bar1 || !bar2 || !bar3) return;
+
+            const setMenuState = (isOpen) => {
+                mobileMenu.classList.toggle('hidden', !isOpen);
+                hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
+                bar1.style.transform = isOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none';
+                bar2.style.opacity = isOpen ? '0' : '1';
+                bar3.style.transform = isOpen ? 'rotate(-45deg) translate(6px, -6px)' : 'none';
+            };
+
+            setMenuState(false);
+            hamburgerBtn.onclick = () => {
+                const isOpen = hamburgerBtn.getAttribute('aria-expanded') === 'true';
+                setMenuState(!isOpen);
+            };
+
+            mobileMenu.querySelectorAll('a').forEach((link) => {
+                link.onclick = () => setMenuState(false);
+            });
+        }
+
         async function loadHeaderAndFooter() {
             const [headerRes, footerRes] = await Promise.all([fetch('header.html'), fetch('footer.html')]);
             document.getElementById('header').innerHTML = await headerRes.text();
             document.getElementById('footer').innerHTML = await footerRes.text();
+            initializeHeader();
         }
         window.onload = loadHeaderAndFooter;
     </script>
 </body>
+</html>
 </html>
