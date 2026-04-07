@@ -7,3 +7,33 @@
         <div id="user-time" class="font-mono text-slate-400"></div>
     </div>
 </footer>
+
+<script>
+function updateTime() {
+    const now = new Date();
+
+    // Norway time (Oslo timezone)
+    const norwayTime = now.toLocaleTimeString("en-GB", {
+        timeZone: "Europe/Oslo",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+    });
+
+    // User local time
+    const userTime = now.toLocaleTimeString([], {
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit"
+    });
+
+    document.getElementById("norway-time").textContent = "Norway Time: " + norwayTime;
+    document.getElementById("user-time").textContent = "Your Time: " + userTime;
+}
+
+// Update every second
+setInterval(updateTime, 1000);
+
+// Initial call
+updateTime();
+</script>
