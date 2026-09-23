@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy — Learn Norwegian</title>
+  <meta name="description" content="Privacy information for the Learn Norwegian practice tool, including local browser storage, speech recognition, translation requests and weather data.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://myg-1107.github.io/Learn-Norwegian/privacy.html">
+  <link rel="icon" type="image/svg+xml" href="logo.svg"><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header"><div class="container header-inner"><a class="brand" href="index.html" aria-label="Learn Norwegian home"><img src="logo.svg" alt="" width="44" height="44"><span>Learn Norwegian</span></a><nav class="site-nav" aria-label="Main navigation"><a href="index.html">Practice</a><a href="about.html">About</a><a href="contact-developers.html">Contact</a></nav><details class="mobile-nav"><summary>Menu</summary><nav aria-label="Mobile navigation"><a href="index.html">Practice</a><a href="about.html">About</a><a href="contact-developers.html">Contact</a></nav></details></div></header>
+  <main id="main-content"><div class="container"><article class="prose reading"><h1 class="page-title">Privacy</h1><p class="page-lede">What the current prototype stores and sends when you use the learning features.</p>
+    <h2>Practice history</h2><p>Recent practice entries are stored in your browser's local storage on the device you use. The site does not provide an account-based history in the current version. Clearing browser site data can remove the saved history.</p>
+    <h2>Speech input</h2><p>Voice input uses the speech-recognition capability provided by your browser. The exact processing of speech data depends on the browser and service provider. Check your browser's privacy documentation before using voice input for sensitive information.</p>
+    <h2>Translation requests</h2><p>The current prototype sends the text you submit to the translation endpoint used by the JavaScript application. Do not enter passwords, identification numbers, health information or other sensitive personal information into the translator. For production, the translation integration should be replaced with an official API behind a controlled backend.</p>
+    <h2>Weather</h2><p>The weather section requests current weather data from Open-Meteo for Oslo and Bergen. See <a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener noreferrer">Open-Meteo's terms</a> for information about the service.</p>
+    <h2>Contact</h2><p>Contact information is published on the developer contact page. Please avoid sending sensitive personal information by email.</p>
+  </article></div></main>
+  <footer class="site-footer"><div class="container footer-grid"><div><strong>Learn Norwegian</strong><div class="footer-small" style="margin-top:6px;">Independent learning project for Norwegian Bokmål practice.</div></div><div class="footer-links"><a href="index.html">Practice</a><a href="about.html">About</a><a href="accessibility.html">Accessibility</a><a href="contact-developers.html">Contact</a></div></div><div class="container footer-small" style="margin-top:24px;">© <span id="current-year">2026</span> Learn Norwegian. Not affiliated with NAV or UDI.</div></footer>
+  <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
+</body>
+</html>

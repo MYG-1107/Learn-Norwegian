@@ -1,0 +1,1 @@
+The current repository's contact-developers.html contains the two developer profiles and public contact links. Keep that content, but move it into the new light layout and use meaningful image alt text (for example, the developer's name or role), not generic labels such as "Software Developer".

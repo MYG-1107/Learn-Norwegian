@@ -1,16 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-  <url>
-    <loc>https://myg-1107.github.io/Learn-Norwegian/</loc>
-    <lastmod>2026-04-14</lastmod>
-    <priority>1.00</priority>
-  </url>
-
-  <url>
-    <loc>https://myg-1107.github.io/Learn-Norwegian/index.html</loc>
-    <lastmod>2026-04-14</lastmod>
-    <priority>0.90</priority>
-  </url>
-
+  <url><loc>https://myg-1107.github.io/Learn-Norwegian/</loc><lastmod>2026-09-23</lastmod><priority>1.0</priority></url>
+  <url><loc>https://myg-1107.github.io/Learn-Norwegian/about.html</loc><lastmod>2026-09-23</lastmod><priority>0.7</priority></url>
+  <url><loc>https://myg-1107.github.io/Learn-Norwegian/contact-developers.html</loc><lastmod>2026-09-23</lastmod><priority>0.5</priority></url>
+  <url><loc>https://myg-1107.github.io/Learn-Norwegian/privacy.html</loc><lastmod>2026-09-23</lastmod><priority>0.4</priority></url>
+  <url><loc>https://myg-1107.github.io/Learn-Norwegian/accessibility.html</loc><lastmod>2026-09-23</lastmod><priority>0.4</priority></url>
 </urlset>

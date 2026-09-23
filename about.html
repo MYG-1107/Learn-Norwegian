@@ -1,67 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - Learn Norwegian</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600&display=swap');
-        body { font-family: 'Inter', system_ui, sans-serif; }
-        .aurora-bg { background: linear-gradient(135deg, #0f172a, #1e3a5f, #312e81, #0f766e); }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About Learn Norwegian — Bokmål Practice Tool</title>
+  <meta name="description" content="Learn how the Learn Norwegian web app supports everyday Norwegian Bokmål practice with speech, text translation, pronunciation and simple learning content.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://myg-1107.github.io/Learn-Norwegian/about.html">
+  <link rel="icon" type="image/svg+xml" href="logo.svg">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body class="aurora-bg text-white min-h-screen">
-    <div id="header"></div>
-    
-    <div class="max-w-4xl mx-auto px-6 py-12">
-        <h1 class="text-4xl font-bold mb-8">About Learn Norwegian</h1>
-        <div class="prose prose-invert max-w-none">
-            <p class="text-lg leading-relaxed">This is a voice-first language learning app focused on Norwegian Bokmål.</p>
-            <p class="text-slate-300">Speak or type in English (British accent supported) and instantly get accurate Bokmål translation + native pronunciation.</p>
-            <p class="text-slate-300">Built for real learners who want to practise speaking every day.</p>
-        </div>
-    </div>
-    
-    <div id="footer"></div>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <header class="site-header"><div class="container header-inner">
+    <a class="brand" href="index.html" aria-label="Learn Norwegian home"><img src="logo.svg" alt="" width="44" height="44"><span>Learn Norwegian</span></a>
+    <nav class="site-nav" aria-label="Main navigation"><a href="index.html">Practice</a><a href="about.html" aria-current="page">About</a><a href="contact-developers.html">Contact</a></nav>
+    <details class="mobile-nav"><summary>Menu</summary><nav aria-label="Mobile navigation"><a href="index.html">Practice</a><a href="about.html" aria-current="page">About</a><a href="contact-developers.html">Contact</a></nav></details>
+  </div></header>
 
-    <script>
-        function initializeHeader() {
-            const hamburgerBtn = document.getElementById('hamburger-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const bar1 = document.getElementById('bar1');
-            const bar2 = document.getElementById('bar2');
-            const bar3 = document.getElementById('bar3');
+  <main id="main-content"><div class="container">
+    <article class="prose reading">
+      <h1 class="page-title">About Learn Norwegian</h1>
+      <p class="page-lede">A small, voice-first learning tool focused on everyday Norwegian Bokmål practice.</p>
 
-            if (!hamburgerBtn || !mobileMenu || !bar1 || !bar2 || !bar3) return;
+      <h2>What the app does</h2>
+      <p>Learn Norwegian lets you speak or type a short sentence and then practise the translated result. The main flow is designed around short repetitions: say something, read the Bokmål sentence, hear it, and repeat it.</p>
 
-            const setMenuState = (isOpen) => {
-                mobileMenu.classList.toggle('hidden', !isOpen);
-                hamburgerBtn.setAttribute('aria-expanded', String(isOpen));
-                bar1.style.transform = isOpen ? 'rotate(45deg) translate(5px, 5px)' : 'none';
-                bar2.style.opacity = isOpen ? '0' : '1';
-                bar3.style.transform = isOpen ? 'rotate(-45deg) translate(6px, -6px)' : 'none';
-            };
+      <h2>Designed for clarity</h2>
+      <p>The interface uses a light, structured public-service style: clear hierarchy, readable typography, strong focus states, simple borders and task-focused language. The design takes inspiration from accessible Norwegian public-sector interface principles without copying NAV or UDI branding.</p>
 
-            setMenuState(false);
-            hamburgerBtn.onclick = () => {
-                const isOpen = hamburgerBtn.getAttribute('aria-expanded') === 'true';
-                setMenuState(!isOpen);
-            };
+      <h2>Technology</h2>
+      <ul>
+        <li>HTML5 and CSS for the user interface.</li>
+        <li>JavaScript for speech input, browser speech synthesis, translation requests, local practice history and weather updates.</li>
+        <li>Open-Meteo for the live Oslo and Bergen weather section.</li>
+      </ul>
 
-            mobileMenu.querySelectorAll('a').forEach((link) => {
-                link.onclick = () => setMenuState(false);
-            });
-        }
+      <h2>Important limitations</h2>
+      <p>Speech recognition and speech synthesis depend on the browser and device. Translation is a prototype feature and should not be treated as a certified or professional translation service. For a production application, the translation call should be moved behind a backend and replaced with an official translation API.</p>
 
-        async function loadHeaderAndFooter() {
-            const [headerRes, footerRes] = await Promise.all([fetch('header.html'), fetch('footer.html')]);
-            document.getElementById('header').innerHTML = await headerRes.text();
-            document.getElementById('footer').innerHTML = await footerRes.text();
-            initializeHeader();
-        }
-        window.onload = loadHeaderAndFooter;
-    </script>
+      <h2>Independent project</h2>
+      <p>Learn Norwegian is an independent learning project. It is not affiliated with, endorsed by, or operated by NAV, UDI, the Norwegian government or any Norwegian public authority.</p>
+    </article>
+  </div></main>
+
+  <footer class="site-footer"><div class="container footer-grid"><div><strong>Learn Norwegian</strong><div class="footer-small" style="margin-top:6px;">Independent learning project for Norwegian Bokmål practice.</div></div><div class="footer-links"><a href="index.html">Practice</a><a href="privacy.html">Privacy</a><a href="accessibility.html">Accessibility</a><a href="contact-developers.html">Contact</a></div></div><div class="container footer-small" style="margin-top:24px;">© <span id="current-year">2026</span> Learn Norwegian. Not affiliated with NAV or UDI.</div></footer>
+  <script>document.getElementById('current-year').textContent = new Date().getFullYear();</script>
 </body>
-</html>
 </html>
