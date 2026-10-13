@@ -1,0 +1,14 @@
+{
+  "name": "Learn Norwegian - Bokmål Practice",
+  "short_name": "Learn Norwegian",
+  "description": "Practise Norwegian Bokmål with phrases, flashcards, quizzes and a beginner guide.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#005b82",
+  "lang": "en",
+  "icons": [
+    { "src": "logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
